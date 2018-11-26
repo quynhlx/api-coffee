@@ -5,6 +5,7 @@ import passwordReset from './password-reset'
 import table from './table '
 import food from './food'
 import category from './category'
+import bill from './bill'
 
 const router = new Router()
 
@@ -37,5 +38,6 @@ router.use('/password-resets', passwordReset)
 router.use('/tables', table)
 router.use('/foods', food)
 router.use('/categories', category)
+router.use('/bills', bill)
 
 export default router

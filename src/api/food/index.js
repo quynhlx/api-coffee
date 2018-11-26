@@ -44,7 +44,13 @@ router.post('/',
  */
 router.get('/',
   token({ required: true }),
-  query(),
+  query({
+    categories: {
+      type: Array,
+      paths: ['categories'],
+      operator: '$in'
+    }
+  }),
   index)
 
 /**

@@ -4,8 +4,9 @@ const tableSchema = new Schema({
   name: {
     type: String
   },
-  status: {
-    type: String
+  bill: {
+    type: Schema.ObjectId,
+    ref: 'Bill'
   }
 }, {
   timestamps: true,
@@ -21,7 +22,7 @@ tableSchema.methods = {
       // simple view
       id: this.id,
       name: this.name,
-      status: this.status,
+      bill: this.bill,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt
     }

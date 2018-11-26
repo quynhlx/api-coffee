@@ -7,7 +7,7 @@ import { schema } from './model'
 export Table, { schema } from './model'
 
 const router = new Router()
-const { name, status } = schema.tree
+const { name, bill } = schema.tree
 
 /**
  * @api {post} /tables Create table
@@ -24,7 +24,7 @@ const { name, status } = schema.tree
  */
 router.post('/',
   token({ required: true, roles: ['admin'] }),
-  body({ name, status }),
+  body({ name, bill }),
   create)
 
 /**
@@ -73,7 +73,7 @@ router.get('/:id',
  */
 router.put('/:id',
   token({ required: true }),
-  body({ name, status }),
+  body({ name, bill }),
   update)
 
 /**
