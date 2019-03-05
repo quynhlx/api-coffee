@@ -16,7 +16,6 @@ const { name, bill } = schema.tree
  * @apiPermission admin
  * @apiParam {String} access_token admin access token.
  * @apiParam name Table's name.
- * @apiParam status Table's status.
  * @apiSuccess {Object} table Table's data.
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 404 Table not found.
@@ -65,7 +64,6 @@ router.get('/:id',
  * @apiPermission user
  * @apiParam {String} access_token user access token.
  * @apiParam name Table's name.
- * @apiParam status Table's status.
  * @apiSuccess {Object} table Table's data.
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 404 Table not found.

@@ -8,25 +8,25 @@ const billSchema = new Schema({
   },
   table: {
     type: Schema.ObjectId,
-    ref: 'Table'
+    ref: 'Table',
+    required: true
   },
   customer: {
-    type: String
+    type: String,
+    required: true
   },
   status: {
-    type: Number // 0 đang đặt, 1 đã thanh toán , 2 đang pha chế, 3 kết thúc
+    type: Number, // 0 đang đặt, 1 đã thanh toán , 2 đang pha chế, 3 kết thúc
+    required: true
   },
   total: {
     type: Number
   },
   details: [{
-    food: {
-      type: Schema.ObjectId,
-      ref: 'Food'
-    },
+    foodId: String,
     foodName: String,
     quatity: Number,
-    amount: Number
+    price: Number
   }]
 }, {
   timestamps: true,
@@ -41,8 +41,14 @@ billSchema.methods = {
     const view = {
       // simple view
       id: this.id,
-      user: this.user.view(full),
-      // table: this.table.view(full),
+      user: this.user ? {
+        name: this.user.name,
+        id: this.user.id
+      } : { },
+      table: this.table ? {
+        name: this.table.toObject().name,
+        id: this.table.toObject()._id
+      } : {},
       customer: this.customer,
       status: this.status,
       total: this.total,

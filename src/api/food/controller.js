@@ -3,7 +3,7 @@ import { Food } from '.'
 
 export const create = ({ bodymen: { body } }, res, next) =>
   Food.create(body)
-    .populate('categories')
+    // .populate('categories')
     .then((food) => food.view(true))
     .then(success(res, 201))
     .catch(next)

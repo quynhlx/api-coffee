@@ -4,7 +4,6 @@ import { middleware as body } from 'bodymen'
 import { token } from '../../services/passport'
 import { create, index, show, update, destroy } from './controller'
 import { schema } from './model'
-export Bill, { schema } from './model'
 
 const router = new Router()
 const { table, customer, status, total, details } = schema.tree
@@ -17,9 +16,14 @@ const { table, customer, status, total, details } = schema.tree
  * @apiParam {String} access_token user access token.
  * @apiParam table Bill's table.
  * @apiParam customer Bill's customer.
- * @apiParam status Bill's status.
- * @apiParam total Bill's total.
- * @apiParam details Bill's details.
+ * @apiParam {Number} status Bill's status.
+ * 1 is created,
+ * 2 is ordering,
+ * 3 is preparing,
+ * 4 is completed,
+ * @apiParam {Array} details
+ * @apiParam {String} detail.id
+ * @apiParam {Number} detail.quatity
  * @apiSuccess {Object} bill Bill's data.
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 404 Bill not found.
@@ -70,9 +74,14 @@ router.get('/:id',
  * @apiParam {String} access_token user access token.
  * @apiParam table Bill's table.
  * @apiParam customer Bill's customer.
- * @apiParam status Bill's status.
- * @apiParam total Bill's total.
- * @apiParam details Bill's details.
+ * @apiParam {Number} status Bill's status.
+ * 1 is created,
+ * 2 is ordering,
+ * 3 is preparing,
+ * 4 is completed,
+ * @apiParam {Array} details
+ * @apiParam {String} detail.id
+ * @apiParam {Number} detail.quatity
  * @apiSuccess {Object} bill Bill's data.
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 404 Bill not found.

@@ -7,7 +7,7 @@ import { schema } from './model'
 export Food, { schema } from './model'
 
 const router = new Router()
-const { name, price, pictures, quantity, categories } = schema.tree
+const { name, price, pictures, detail, quantity, categories } = schema.tree
 
 /**
  * @api {post} /foods Create food
@@ -18,7 +18,7 @@ const { name, price, pictures, quantity, categories } = schema.tree
  * @apiParam name Food's name.
  * @apiParam price Food's price.
  * @apiParam pictures Food's pictures.
- * @apiParam quantity Food's quantity.
+ * @apiParam detail Food Detail.
  * @apiParam categories Food's categories.
  * @apiSuccess {Object} food Food's data.
  * @apiError {Object} 400 Some parameters may contain invalid values.
@@ -27,7 +27,7 @@ const { name, price, pictures, quantity, categories } = schema.tree
  */
 router.post('/',
   token({ required: true, roles: ['admin'] }),
-  body({ name, price, pictures, quantity, categories }),
+  body({ name, price, pictures, detail, quantity, categories }),
   create)
 
 /**
@@ -77,7 +77,7 @@ router.get('/:id',
  * @apiParam name Food's name.
  * @apiParam price Food's price.
  * @apiParam pictures Food's pictures.
- * @apiParam quantity Food's quantity.
+ * @apiParam detail Food Detail.
  * @apiParam categories Food's categories.
  * @apiSuccess {Object} food Food's data.
  * @apiError {Object} 400 Some parameters may contain invalid values.
@@ -86,7 +86,7 @@ router.get('/:id',
  */
 router.put('/:id',
   token({ required: true }),
-  body({ name, price, pictures, quantity, categories }),
+  body({ name, price, pictures, detail, quantity, categories }),
   update)
 
 /**

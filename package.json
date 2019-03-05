@@ -4,11 +4,11 @@
   "main": "src",
   "private": true,
   "scripts": {
-    "start": "node .",
+    "start": "node --inspect .",
     "test": "jest",
     "coverage": "npm test -- --coverage",
     "postcoverage": "opn coverage/lcov-report/index.html",
-    "dev": "nodemon -i \"*.test.js\" .",
+    "dev": "nodemon -i \"*.test.js\" --inspect .",
     "prod": "cross-env NODE_ENV=production nodemon -i \"*.test.js\" -r dotenv-safe/config .",
     "lint": "eslint src",
     "docs": "apidoc -i src -o docs && apidoc-markdown -p docs -o DOCS.md",

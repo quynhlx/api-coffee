@@ -7,13 +7,12 @@ const foodSchema = new Schema({
   price: {
     type: Number
   },
+  detail: {
+    type: String
+  },
   pictures: [{
     type: String
   }],
-  quantity: {
-    type: Number,
-    default: 0
-  },
   categories: [{
     type: Schema.Types.ObjectId,
     ref: 'Category'
@@ -33,9 +32,9 @@ foodSchema.methods = {
       id: this.id,
       name: this.name,
       price: this.price,
+      detail: this.detail,
       pictures: this.pictures,
-      quantity: this.quantity,
-      categories: this.categories,
+      categories: this.categories.map(c => c.view()),
       createdAt: this.createdAt,
       updatedAt: this.updatedAt
     }

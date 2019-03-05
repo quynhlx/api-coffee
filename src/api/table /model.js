@@ -22,14 +22,17 @@ tableSchema.methods = {
       // simple view
       id: this.id,
       name: this.name,
-      bill: this.bill,
+      status: this.bill ? this.bill.status : 0,
+      customerName: this.bill ? this.bill.customer : '',
+      numberOrder: this.bill ? this.bill.toObject().details.length : 0
+      // createdAt: this.createdAt,
+      // updatedAt: this.updatedAt
+    }
+    return full ? {
+      ...view,
+      // add properties for a full view
       createdAt: this.createdAt,
       updatedAt: this.updatedAt
-    }
-
-    return full ? {
-      ...view
-      // add properties for a full view
     } : view
   }
 }

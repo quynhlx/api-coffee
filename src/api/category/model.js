@@ -3,6 +3,9 @@ import mongoose, { Schema } from 'mongoose'
 const categorySchema = new Schema({
   name: {
     type: String
+  },
+  icon: {
+    type: String
   }
 }, {
   timestamps: true,
@@ -18,12 +21,13 @@ categorySchema.methods = {
       // simple view
       id: this.id,
       name: this.name,
-      createdAt: this.createdAt,
-      updatedAt: this.updatedAt
+      icon: this.icon
     }
 
     return full ? {
-      ...view
+      ...view,
+      createdAt: this.createdAt,
+      updatedAt: this.updatedAt
       // add properties for a full view
     } : view
   }
