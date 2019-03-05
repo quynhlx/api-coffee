@@ -20,15 +20,17 @@ export const create = ({ user, bodymen: { body } }, res, next) => {
       return res.status(404).json({ error: 'Table is not avaiable' })
     }
     const saveBill = Promise.all(getFoods).then(details => {
-      function getSum (sum, food) {
+      function getSum(sum, food) {
         return sum + parseFloat(food.price) * parseInt(food.quatity)
       }
       body.total = details.reduce(getSum, 0)
       body.details = details
       return Bill.create({ ...body, user: user })
-        .then(bill => Bill.findById(bill.id)
-          .populate('user')
-          .populate('table'))
+        .then(bill =>
+          Bill.findById(bill.id)
+            .populate('user')
+            .populate('table')
+        )
         .then(bill => bill.view(true))
     })
     return saveBill
@@ -87,15 +89,19 @@ export const update = ({ user, bodymen: { body }, params }, res, next) => {
     body.details = details
     return Bill.findById(params.id)
       .populate('user')
-      // .populate('table')
       .then(notFound(res))
       .then(authorOrAdmin(res, user, 'user'))
       .then(bill => (bill ? Object.assign(bill, body).save() : null))
+      .then(bill => {
+        return Bill.findById(bill.id)
+          .populate('user')
+          .populate('table')
+      })
       .then(bill => (bill ? bill.view() : null))
   })
   return saveBill
     .then(bill => {
-      return Table.findById(bill.table.toString()).then((t, e) => {
+      return Table.findById(bill.table.id.toString()).then((t, e) => {
         if (body.status === 4) {
           t.bill = null
         } else {
