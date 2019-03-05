@@ -20,22 +20,16 @@ export const create = ({ user, bodymen: { body } }, res, next) => {
       return res.status(404).json({ error: 'Table is not avaiable' })
     }
     const saveBill = Promise.all(getFoods).then(details => {
-      function getSum(sum, food) {
+      function getSum (sum, food) {
         return sum + parseFloat(food.price) * parseInt(food.quatity)
       }
       body.total = details.reduce(getSum, 0)
       body.details = details
       return Bill.create({ ...body, user: user })
+        .then(bill => Bill.findById(bill.id)
+          .populate('user')
+          .populate('table'))
         .then(bill => bill.view(true))
-        .then(bill =>
-          Bill.findById(bill.id)
-            .populate('user')
-            .populate('table')
-        )
-        .then(data => {
-          data.user = data.user.view('name')
-          return data
-        })
     })
     return saveBill
       .then(bill => {
