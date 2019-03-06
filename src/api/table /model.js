@@ -24,7 +24,8 @@ tableSchema.methods = {
       name: this.name,
       status: this.bill ? this.bill.status : 0,
       customerName: this.bill ? this.bill.customer : '',
-      numberOrder: this.bill ? this.bill.toObject().details.length : 0
+      numberOrder: this.bill ? this.bill.toObject().details.length : 0,
+      billId: this.bill ? this.bill.id : undefined
       // createdAt: this.createdAt,
       // updatedAt: this.updatedAt
     }
