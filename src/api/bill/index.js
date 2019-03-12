@@ -31,7 +31,7 @@ const { table, customer, status, total, details } = schema.tree
  */
 router.post('/',
   token({ required: true }),
-  body({ table, customer, status, total, details }),
+  body({ table, customer, status, details }),
   create)
 
 /**

@@ -26,7 +26,10 @@ const billSchema = new Schema({
     foodId: String,
     foodName: String,
     quatity: Number,
-    price: Number
+    price: Number,
+    pictures: [{
+      type: String
+    }]
   }]
 }, {
   timestamps: true,

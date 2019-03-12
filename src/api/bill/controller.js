@@ -9,7 +9,8 @@ export const create = ({ user, bodymen: { body } }, res, next) => {
         foodId: f.id,
         foodName: data.name,
         quatity: f.quatity,
-        price: data.price
+        price: data.price,
+        pictures: f.pictures
       }
     })
   })
@@ -20,7 +21,7 @@ export const create = ({ user, bodymen: { body } }, res, next) => {
       return res.status(404).json({ error: 'Table is not avaiable' })
     }
     const saveBill = Promise.all(getFoods).then(details => {
-      function getSum(sum, food) {
+      function getSum (sum, food) {
         return sum + parseFloat(food.price) * parseInt(food.quatity)
       }
       body.total = details.reduce(getSum, 0)
@@ -77,7 +78,8 @@ export const update = ({ user, bodymen: { body }, params }, res, next) => {
         foodId: f.id,
         foodName: data.name,
         quatity: f.quatity,
-        price: data.price
+        price: data.price,
+        pictures: f.pictures
       }
     })
   })
