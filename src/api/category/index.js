@@ -23,7 +23,7 @@ const { name, icon } = schema.tree
  * @apiError 401 admin access only.
  */
 router.post('/',
-  token({ required: true, roles: ['admin'] }),
+  token({ required: true, roles: ['admin', 'water', 'bartender'] }),
   body({ name, icon }),
   create)
 
@@ -39,7 +39,7 @@ router.post('/',
  * @apiError 401 admin access only.
  */
 router.get('/',
-  token({ required: true, roles: ['admin'] }),
+  token({ required: true, roles: ['admin', 'water', 'bartender'] }),
   query(),
   index)
 
@@ -55,7 +55,7 @@ router.get('/',
  * @apiError 401 admin access only.
  */
 router.get('/:id',
-  token({ required: true, roles: ['admin'] }),
+  token({ required: true, roles: ['admin', 'water', 'bartender'] }),
   show)
 
 /**
@@ -72,7 +72,7 @@ router.get('/:id',
  * @apiError 401 admin access only.
  */
 router.put('/:id',
-  token({ required: true, roles: ['admin'] }),
+  token({ required: true, roles: ['admin', 'water', 'bartender'] }),
   body({name, icon}),
   update)
 
@@ -87,7 +87,7 @@ router.put('/:id',
  * @apiError 401 admin access only.
  */
 router.delete('/:id',
-  token({ required: true, roles: ['admin'] }),
+  token({ required: true, roles: ['admin', 'water', 'bartender'] }),
   destroy)
 
 export default router

@@ -26,7 +26,7 @@ const { name, price, pictures, detail, quantity, categories } = schema.tree
  * @apiError 401 admin access only.
  */
 router.post('/',
-  token({ required: true, roles: ['admin'] }),
+  token({ required: true, roles: ['admin', 'water', 'bartender'] }),
   body({ name, price, pictures, detail, quantity, categories }),
   create)
 
@@ -100,7 +100,7 @@ router.put('/:id',
  * @apiError 401 admin access only.
  */
 router.delete('/:id',
-  token({ required: true, roles: ['admin'] }),
+  token({ required: true, roles: ['admin', 'water', 'bartender'] }),
   destroy)
 
 export default router
