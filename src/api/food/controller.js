@@ -22,8 +22,8 @@ export const index = ({ querymen: { query, select, cursor } }, res, next) =>
 
 export const show = ({ params }, res, next) =>
   Food.findById(params.id)
-    .then(notFound(res))
     .populate('categories')
+    .then(notFound(res))
     .then((food) => food ? food.view() : null)
     .then(success(res))
     .catch(next)
