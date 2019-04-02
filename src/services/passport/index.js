@@ -63,7 +63,7 @@ passport.use('master', new BearerStrategy((token, done) => {
 passport.use('token', new JwtStrategy({
   secretOrKey: jwtSecret,
   jwtFromRequest: ExtractJwt.fromExtractors([
-    ExtractJwt.fromUrlQueryParameter('access_token'),
+    ExtractJwt.fromHeader('access_token'),
     ExtractJwt.fromBodyField('access_token'),
     ExtractJwt.fromAuthHeaderWithScheme('Bearer')
   ])
